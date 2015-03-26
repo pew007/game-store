@@ -11,10 +11,6 @@ import java.util.Vector;
 public class DBHelper implements java.io.Serializable {
 
     private static final long serialVersionUID  = 1L;
-    private static String USER = "jadrn048";
-    private static String PASS = "outlet";
-    private static String CONNECTION_STRING = "jdbc:mysql://opatija:3306/jadrn048";
-    private static String DRIVER_CLASS      = "com.mysql.jdbc.Driver";
 
     public static Vector<String[]> doQuery(String query) {
         Connection connection = getConnection();
@@ -40,10 +36,15 @@ public class DBHelper implements java.io.Serializable {
             e.printStackTrace();
         } finally {
             try {
-                resultSet.close();
-                statement.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
                 connection.close();
             } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
 
@@ -62,9 +63,12 @@ public class DBHelper implements java.io.Serializable {
             e.printStackTrace();
         } finally {
             try {
-                statement.close();
+                if (statement != null) {
+                    statement.close();
+                }
                 connection.close();
             } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
 
@@ -72,25 +76,19 @@ public class DBHelper implements java.io.Serializable {
     }
 
     private static Connection getConnection() {
+        String url      = "jdbc:mysql://opatija.sdsu.edu:3306/jadrn048";
+        String username = "jadrn048";
+        String password = "outlet";
+        String driver   = "com.mysql.jdbc.Driver";
+
         Connection connection = null;
         try {
-            Class.forName(DRIVER_CLASS).newInstance();
-            connection = DriverManager.getConnection(CONNECTION_STRING, USER, PASS);
+            Class.forName(driver).newInstance();
+            connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return connection;
-    }
-
-    public static void main(String[] args) {
-        try {
-            // Load the MySQL JDBC driver
-            Class.forName(DRIVER_CLASS);
-            System.out.println("MySQL JDBC driver loaded ok.");
-
-        } catch (Exception e) {
-            System.err.println("Exception: " + e.getMessage());
-        }
     }
 }
