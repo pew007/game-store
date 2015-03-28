@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 @WebServlet("/main")
 public class DispatcherServlet extends HttpServlet {
@@ -17,13 +18,13 @@ public class DispatcherServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // TODO: fetch all inventory
-        ProductBean[] products = ProductBean.getProducts();
+        ArrayList<ProductBean> products = ProductBean.getProducts();
 
         HttpSession session = request.getSession(true);
+        session.setAttribute("products", products);
 
         PrintWriter output = response.getWriter();
-        output.println("hello3");
+        output.println("hello");
         output.close();
     }
 }
