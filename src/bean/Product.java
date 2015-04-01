@@ -1,4 +1,4 @@
-package model;
+package bean;
 
 import util.DBHelper;
 
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ProductBean implements Serializable {
+public class Product implements Serializable {
 
     private String sku;
     private String vendor;
@@ -21,7 +21,7 @@ public class ProductBean implements Serializable {
     private String image;
     private int quantity;
 
-    public ProductBean() {}
+    public Product() {}
 
     public String getSku() {
         return sku;
@@ -103,7 +103,7 @@ public class ProductBean implements Serializable {
         this.quantity = quantity;
     }
 
-    public static ArrayList<ProductBean> getProducts() {
+    public static ArrayList<Product> getProducts() {
         ResultSet resultSet = DBHelper.doQuery(
                 "SELECT product.*, vendor.vendorName, category.categoryName, platform.platformName, on_hand.quantity\n" +
                 "FROM product\n" +
@@ -118,7 +118,7 @@ public class ProductBean implements Serializable {
                 "\tproduct.sku = on_hand.sku\n" +
                 ")");
 
-        ArrayList<ProductBean> products = new ArrayList<ProductBean>();
+        ArrayList<Product> products = new ArrayList<Product>();
         try {
             while (resultSet.next()) {
                 String sku          = resultSet.getString("sku");
@@ -132,7 +132,7 @@ public class ProductBean implements Serializable {
                 float retail        = resultSet.getFloat("retail");
                 int quantity        = resultSet.getInt("quantity");
 
-                ProductBean product = new ProductBean();
+                Product product = new Product();
                 product.setSku(sku);
                 product.setVendor(vendor);
                 product.setCategory(category);

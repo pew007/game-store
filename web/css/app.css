@@ -1,0 +1,48 @@
+html {
+  padding: 0 150px;
+  font-family: 'Arial', sans-serif;
+}
+
+.hide {
+  display: none;
+}
+
+#navbar1 a {
+  float: left;
+}
+
+#navbar1 img {
+  height: 55px;
+}
+
+#navbar1 ul {
+  float: right;
+  list-style: none;
+}
+
+#navbar1 ul li {
+  float: left;
+  display: list-item;
+  width: 100px;
+  position: relative;
+}
+
+#mainContentSidebar {
+  float: left;
+  width: 150px;
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+#mainContentSidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+#mainContentSidebar ul .ui-widget-header {
+  padding: 0.3em;
+}
+
+#mainContentSidebar ul li {
+  padding: 3px;
+}

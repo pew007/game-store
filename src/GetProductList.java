@@ -1,4 +1,4 @@
-import model.ProductBean;
+import bean.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 @WebServlet("/product/list")
@@ -18,13 +17,17 @@ public class GetProductList extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ArrayList<ProductBean> products = ProductBean.getProducts();
+        ArrayList<Product> products = Product.getProducts();
+        ArrayList<Vendor> vendors = Vendor.getVendors();
+        ArrayList<Category> categories = Category.getCategories();
+        ArrayList<Platform> platforms = Platform.getPlatforms();
 
         HttpSession session = request.getSession(true);
         session.setAttribute("products", products);
+        session.setAttribute("vendors", vendors);
+        session.setAttribute("categories", categories);
+        session.setAttribute("platforms", platforms);
 
-        PrintWriter output = response.getWriter();
-        output.println("hello");
-        output.close();
+        request.getRequestDispatcher("/WEB-INF/jsp/productList.jsp").forward(request, response);
     }
 }
