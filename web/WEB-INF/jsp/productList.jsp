@@ -18,13 +18,21 @@
 
 <div id="mainContentContainer">
   <jsp:include page="shared/sidebar.jsp" />
+  <div id="mainContentBody">
+    <ul class="productList">
+      <%--@elvariable id="products" type="java.util.List"--%>
+      <c:forEach var="product" items="${products}">
+        <li class="productItem" id="product-${product.sku}">
+          <div class="productItemInner">
+            <div class="productImage">
+              <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />"/>
+            </div>
+          </div>
+        </li>
+      </c:forEach>
+    </ul>
+  </div>
 </div>
-
-<%--&lt;%&ndash;@elvariable id="products" type="java.util.List"&ndash;%&gt;--%>
-<%--<c:forEach var="product" items="${products}">--%>
-  <%--<c:out value="${product.sku}" /> <br>--%>
-  <%--<c:out value="${product.vendor}" /> <p>--%>
-<%--</c:forEach>--%>
 
 </body>
 </html>

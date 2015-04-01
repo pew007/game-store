@@ -92,7 +92,7 @@ public class Product implements Serializable {
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.image = "/_p_images/" + image;
     }
 
     public int getQuantity() {

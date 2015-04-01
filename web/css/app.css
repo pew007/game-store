@@ -3,6 +3,10 @@ html {
   font-family: 'Arial', sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 .hide {
   display: none;
 }
@@ -22,14 +26,13 @@ html {
 
 #navbar1 ul li {
   float: left;
-  display: list-item;
   width: 100px;
   position: relative;
 }
 
 #mainContentSidebar {
   float: left;
-  width: 150px;
+  width: 15%;
   margin-left: 0;
   margin-right: 10px;
 }
@@ -45,4 +48,21 @@ html {
 
 #mainContentSidebar ul li {
   padding: 3px;
+}
+
+#mainContentBody {
+  width: 80%;
+  float: right;
+}
+
+#mainContentBody .productList {
+  list-style: none;
+}
+
+.productImage {
+  height: 180px;
+}
+
+.productImage img {
+  height: 150px;
 }
