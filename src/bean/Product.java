@@ -153,4 +153,30 @@ public class Product implements Serializable {
 
         return products;
     }
+
+    public String toJsonString() {
+        String jsonString;
+
+        String featureString = "";
+        featureString += "[";
+        for (Object feature : this.getFeatures()) {
+            featureString += "\"" + feature.toString() + "\",";
+        }
+        featureString = featureString.substring(0, featureString.length() - 1);
+        featureString += "]";
+
+        jsonString = "{\"sku\":\"" + this.getSku() + "\""
+                + ", \"vendor\":\"" + this.getVendor() + "\""
+                + ", \"category\":\"" + this.getCategory() + "\""
+                + ", \"platform\":\"" + this.getPlatform() + "\""
+                + ", \"vendorModel\":\"" + this.getVendorModel() + "\""
+                + ", \"description\":\"" + this.getDescription() + "\""
+                + ", \"retail\":\"" + this.getRetail() + "\""
+                + ", \"image\":\"" + this.getImage() + "\""
+                + ", \"quantity\":\"" + this.getQuantity() + "\""
+                + ", \"features\":" + featureString
+                + "}";
+
+        return jsonString;
+    }
 }

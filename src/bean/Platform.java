@@ -24,7 +24,7 @@ public class Platform implements Serializable {
     public static ArrayList<Platform> getPlatforms() {
         ResultSet resultSet = DBHelper.doQuery("SELECT platformName FROM platform");
 
-        ArrayList<Platform> categories = new ArrayList<>();
+        ArrayList<Platform> categories = new ArrayList<Platform>();
         try {
             while (resultSet.next()) {
                 String platformName = resultSet.getString("platformName");

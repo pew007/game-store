@@ -24,7 +24,7 @@ public class Category implements Serializable {
     public static ArrayList<Category> getCategories() {
         ResultSet resultSet = DBHelper.doQuery("SELECT categoryName FROM category");
 
-        ArrayList<Category> categories = new ArrayList<>();
+        ArrayList<Category> categories = new ArrayList<Category>();
         try {
             while (resultSet.next()) {
                 String categoryName = resultSet.getString("categoryName");

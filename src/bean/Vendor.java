@@ -24,7 +24,7 @@ public class Vendor implements Serializable {
     public static ArrayList<Vendor> getVendors() {
         ResultSet resultSet = DBHelper.doQuery("SELECT vendorName FROM vendor");
 
-        ArrayList<Vendor> vendors = new ArrayList<>();
+        ArrayList<Vendor> vendors = new ArrayList<Vendor>();
         try {
             while (resultSet.next()) {
                 String vendorName = resultSet.getString("vendorName");
