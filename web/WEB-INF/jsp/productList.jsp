@@ -28,7 +28,7 @@
               <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />"/>
             </div>
             <div class="productDetails">
-              <div><c:out value="${product.vendorModel}" /></div>
+              <h3><c:out value="${product.vendorModel}" /></h3>
               <div><c:out value="${product.category}" /></div>
               <div><c:out value="${product.vendor}" /></div>
               <div><c:out value="${product.platform}" /></div>
