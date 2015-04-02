@@ -27,6 +27,16 @@
             <div class="productImage">
               <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />"/>
             </div>
+            <div class="productDetails">
+              <div><c:out value="${product.vendorModel}" /></div>
+              <div><c:out value="${product.category}" /></div>
+              <div><c:out value="${product.vendor}" /></div>
+              <div><c:out value="${product.platform}" /></div>
+            </div>
+            <div class="productPrice">
+              <div class="price">$<c:out value="${product.retail}" /></div>
+              <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
+            </div>
           </div>
         </li>
       </c:forEach>
