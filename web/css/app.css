@@ -60,7 +60,7 @@ a {
   float: right;
 }
 
-#mainContentBody .productList {
+#mainContentBody #productList {
   list-style: none;
   padding-left: 1em;
 }
@@ -114,4 +114,21 @@ a {
 
 .productPrice button {
   margin-top: 20px;
+}
+
+#sortBar {
+  height: 30px;
+  padding-left: 1em;
+}
+
+#sortBar ul {
+  padding-left: 0;
+  float: left;
+  list-style: none;
+}
+
+#sortBar ul li {
+  float: left;
+  margin: 0 10px;
+  position: relative;
 }
