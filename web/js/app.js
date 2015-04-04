@@ -28,7 +28,6 @@ $(document).ready(function(){
 
       sortQueue.each(function (index, value) {
         var productItem = $(value);
-        console.log(productItem.attr('data-price'));
         $('#productList').append(productItem);
       });
 
