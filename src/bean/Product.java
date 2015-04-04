@@ -10,6 +10,10 @@ import java.util.Arrays;
 
 public class Product implements Serializable {
 
+    public static final int IN_STOCK = 1;
+    public static final int MORE_ON_THE_WAY = 2;
+    public static final int COMING_SOON = 3;
+
     private String sku;
     private String vendor;
     private String category;
@@ -20,6 +24,7 @@ public class Product implements Serializable {
     private float retail;
     private String image;
     private int quantity;
+    private int status;
 
     public Product() {}
 
@@ -103,6 +108,20 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int quantity) {
+        if (quantity > 0) {
+            this.status = IN_STOCK;
+        } else if (quantity == 0) {
+            this.status = MORE_ON_THE_WAY;
+        } else {
+            this.status = COMING_SOON;
+        }
+    }
+
     public static ArrayList<Product> getProducts() {
         ResultSet resultSet = DBHelper.doQuery(
                 "SELECT product.*, vendor.vendorName, category.categoryName, platform.platformName, on_hand.quantity\n" +
@@ -143,6 +162,7 @@ public class Product implements Serializable {
                 product.setImage(image);
                 product.setRetail(retail);
                 product.setQuantity(quantity);
+                product.setStatus(quantity);
 
                 products.add(product);
             }

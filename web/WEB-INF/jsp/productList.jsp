@@ -28,10 +28,17 @@
               <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />"/>
             </div>
             <div class="productDetails">
-              <h3><c:out value="${product.vendorModel}" /></h3>
-              <div><c:out value="${product.category}" /></div>
-              <div><c:out value="${product.vendor}" /></div>
-              <div><c:out value="${product.platform}" /></div>
+              <h3><a href="#"><c:out value="${product.vendorModel}" /></a></h3>
+              <p class="platform">for <strong><c:out value="${product.platform}" /></strong></p>
+              <p class="vendor">by <c:out value="${product.vendor}" /></p>
+              <p class="category"><c:out value="${product.category}" /></p>
+              <p class="status">
+                <c:choose>
+                  <c:when test="${product.status == 1}">In stock</c:when>
+                  <c:when test="${product.status == 2}">More on the way</c:when>
+                  <c:when test="${product.status == 3}">Coming soon</c:when>
+                </c:choose>
+              </p>
             </div>
             <div class="productPrice">
               <div class="price">$<c:out value="${product.retail}" /></div>
