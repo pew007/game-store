@@ -10,15 +10,19 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.structure.min.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.theme.min.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/app.css"/>
-  <title>Welcome</title>
+  <title>Games 101</title>
 </head>
 <body>
-
 <jsp:include page="shared/header.jsp" />
 
 <div id="mainContentContainer">
   <jsp:include page="shared/sidebar.jsp" />
   <div id="mainContentBody">
+    <div id="searchBar">
+      <form action="">
+        <input type="text" class="searchbox button" placeholder="Search"/>
+      </form>
+    </div>
     <div id="sortBar">
       <ul>
         <li>SORT BY: </li>
@@ -42,7 +46,9 @@
                 <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />"/>
               </div>
               <div class="productDetails">
-                <h3><a href="#"><c:out value="${product.vendorModel}" /></a></h3>
+                <h3>
+                  <a href="${pageContext.request.contextPath}/product/details?sku=${product.sku}"><c:out value="${product.vendorModel}" /></a>
+                </h3>
                 <p class="platform">for <strong><c:out value="${product.platform}" /></strong></p>
                 <p class="vendor">by <c:out value="${product.vendor}" /></p>
                 <p class="category"><c:out value="${product.category}" /></p>

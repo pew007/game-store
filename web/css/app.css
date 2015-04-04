@@ -132,3 +132,15 @@ a {
   margin: 0 10px;
   position: relative;
 }
+
+#searchBar {
+  padding-left: 1em;
+  padding-top: 20px;
+}
+
+#searchBar .searchbox {
+  height: 50px;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 20px !important;
+}
