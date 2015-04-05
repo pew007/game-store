@@ -2,8 +2,106 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" ng-app="storeApp">
 <head>
-  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=/product/list">
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="/js/angular.js"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/jquery-ui.structure.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/jquery-ui.theme.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/app.css"/>
+  <title>Games 101</title>
 </head>
+
+<body ng-controller="StoreCtrl">
+
+<div id="navbar1" class="ui-toolbar ui-widget-header ui-helper-clearfix">
+  <a href="#" class="logo"><img src="/image/logo.png" alt="logo"/></a>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Help</a></li>
+    <li><a href="#">My Cart</a></li>
+  </ul>
+</div>
+
+<div id="mainContentContainer">
+  <!--<div id="mainContentSidebar" class="sidebar">-->
+    <!--<ul id="mainContentSidebarMenu">-->
+      <!--<%&#45;&#45;Categories&#45;&#45;%>-->
+      <!--<li class="ui-widget-header">Categories</li>-->
+      <!--<%&#45;&#45;@elvariable id="categories" type="java.util.List"&#45;&#45;%>-->
+      <!--<c:forEach var="category" items="${categories}">-->
+        <!--<li><a href=""><c:out value="${category.name}" /></a></li>-->
+      <!--</c:forEach>-->
+
+      <!--<%&#45;&#45;Platforms&#45;&#45;%>-->
+      <!--<li class="ui-widget-header">Platforms</li>-->
+      <!--<%&#45;&#45;@elvariable id="platforms" type="java.util.List"&#45;&#45;%>-->
+      <!--<c:forEach var="platform" items="${platforms}">-->
+        <!--<li><a href=""><c:out value="${platform.name}" /></a></li>-->
+      <!--</c:forEach>-->
+
+      <!--<%&#45;&#45;Vendors&#45;&#45;%>-->
+      <!--<li class="ui-widget-header">Vendors</li>-->
+      <!--<%&#45;&#45;@elvariable id="vendors" type="java.util.List"&#45;&#45;%>-->
+      <!--<c:forEach var="vendor" items="${vendors}">-->
+        <!--<li><a href=""><c:out value="${vendor.name}" /></a></li>-->
+      <!--</c:forEach>-->
+    <!--</ul>-->
+  <!--</div>-->
+
+  <div id="mainContentBody">
+    <div id="searchBar">
+      <form action="">
+        <input type="text" class="searchbox button" placeholder="Search"/>
+      </form>
+    </div>
+    <div id="sortBar">
+      <ul>
+        <li>SORT BY: </li>
+        <li><a href="#">Lowest Price</a></li>
+        <li><a href="#">Highest Price</a></li>
+        <li><a href="#">Name</a></li>
+        <li><a href="#">Platform</a></li>
+        <li></li>
+      </ul>
+    </div>
+    <div id="productListContainer">
+      <ul id="productList">
+          <li ng-repeat="product in products" class="productItem" id="product-{{product.sku}}">
+            <div class="productItemInner">
+              <div class="productImage">
+                <img ng-src="{{ product.image }}" alt="{{ product.vendorModel }}"/>
+              </div>
+              <div class="productDetails">
+                <h3>
+                  <a href="/product/details?sku={{ product.sku }}">{{ product.vendorModel }}</a>
+                </h3>
+                <p class="platform">for <strong>{{ product.platform }}</strong></p>
+                <p class="vendor">by {{ product.vendor }}</p>
+                <p class="category">{{ product.category }}</p>
+                <!--<p class="status">-->
+                  <!--<c:choose>-->
+                    <!--<c:when test="${product.status == 1}">In stock</c:when>-->
+                    <!--<c:when test="${product.status == 2}">More on the way</c:when>-->
+                    <!--<c:when test="${product.status == 3}">Coming soon</c:when>-->
+                  <!--</c:choose>-->
+                <!--</p>-->
+              </div>
+              <div class="productPrice">
+                <div class="price">{{ product.retail | currency }}</div>
+                <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
+              </div>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</body>
+
 </html>
