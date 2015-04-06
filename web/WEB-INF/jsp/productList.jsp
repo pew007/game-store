@@ -18,11 +18,7 @@
 <div id="mainContentContainer">
   <jsp:include page="shared/sidebar.jsp" />
   <div id="mainContentBody">
-    <div id="searchBar">
-      <form action="">
-        <input type="text" class="searchbox button" placeholder="Search"/>
-      </form>
-    </div>
+    <jsp:include page="shared/searchbar.jsp" />
     <div id="sortBar">
       <ul>
         <li>SORT BY: </li>

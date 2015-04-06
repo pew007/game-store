@@ -60,7 +60,39 @@ a {
   float: right;
 }
 
-#mainContentBody #productList {
+/* Sortbar*/
+#sortBar {
+  height: 30px;
+  padding-left: 1em;
+}
+
+#sortBar ul {
+  padding-left: 0;
+  float: left;
+  list-style: none;
+}
+
+#sortBar ul li {
+  float: left;
+  margin: 0 10px;
+  position: relative;
+}
+
+/* Searchbar*/
+#searchBar {
+  padding-left: 1em;
+  padding-top: 20px;
+}
+
+#searchBar .searchbox {
+  height: 50px;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 20px !important;
+}
+
+/* Product list*/
+#mainContentBody #productList, #productContainer {
   list-style: none;
   padding-left: 1em;
 }
@@ -116,31 +148,16 @@ a {
   margin-top: 20px;
 }
 
-#sortBar {
-  height: 30px;
-  padding-left: 1em;
-}
-
-#sortBar ul {
-  padding-left: 0;
+/* Product details*/
+#productContainer .productImage {
+  width: 35%;
   float: left;
-  list-style: none;
 }
 
-#sortBar ul li {
-  float: left;
-  margin: 0 10px;
-  position: relative;
+#productContainer img {
+  height: 250px;
 }
 
-#searchBar {
-  padding-left: 1em;
-  padding-top: 20px;
-}
-
-#searchBar .searchbox {
-  height: 50px;
-  width: 100%;
-  padding: 10px 20px;
-  font-size: 20px !important;
+#productContainer h1 {
+  margin: 0;
 }

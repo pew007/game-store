@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,6 +16,24 @@
 
 <div id="#mainContentContainer">
   <jsp:include page="shared/sidebar.jsp" />
+  <div id="mainContentBody">
+    <jsp:include page="shared/searchbar.jsp" />
+    <div id="productListContainer">
+      <div id="productContainer">
+        <div class="productItem">
+          <div class="productItemInner">
+            <%--@elvariable id="product" type="bean.Product"--%>
+            <div class="productImage">
+              <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />" />
+            </div>
+            <div class="productDetails">
+              <h1><c:out value="${product.vendorModel}"/></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 </body>
