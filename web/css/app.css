@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+.warning {
+  color: red;
+}
+
 .hide {
   display: none;
 }
@@ -159,5 +163,9 @@ a {
 }
 
 #productContainer h1 {
+  margin: 0 0 20px 0;
+}
+
+#productContainer h4 {
   margin: 0;
 }

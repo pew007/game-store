@@ -28,6 +28,8 @@
             </div>
             <div class="productDetails">
               <h1><c:out value="${product.vendorModel}"/></h1>
+              <h4><c:out value="${product.vendor}"/></h4>
+              <h4><c:out value="${product.category}"/></h4>
             </div>
           </div>
         </div>

@@ -48,17 +48,23 @@
                 <p class="platform">for <strong><c:out value="${product.platform}" /></strong></p>
                 <p class="vendor">by <c:out value="${product.vendor}" /></p>
                 <p class="category"><c:out value="${product.category}" /></p>
-                <p class="status">
-                  <c:choose>
-                    <c:when test="${product.status == 1}">In stock</c:when>
-                    <c:when test="${product.status == 2}">More on the way</c:when>
-                    <c:when test="${product.status == 3}">Coming soon</c:when>
-                  </c:choose>
-                </p>
               </div>
               <div class="productPrice">
                 <div class="price">$<c:out value="${product.retail}" /></div>
-                <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
+                <div class="status">
+                  <c:choose>
+                    <c:when test="${product.status == 1}">
+                      <%--<div>In stock</div>--%>
+                      <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
+                    </c:when>
+                    <c:when test="${product.status == 2}">
+                      <h3 class="warning">More on the way</h3>
+                    </c:when>
+                    <c:when test="${product.status == 3}">
+                      <h3 class="warning">Coming soon</h3>
+                    </c:when>
+                  </c:choose>
+                </div>
               </div>
             </div>
           </li>
