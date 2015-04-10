@@ -30,6 +30,18 @@
               <h1><c:out value="${product.vendorModel}"/></h1>
               <h4><c:out value="${product.vendor}"/></h4>
               <h4><c:out value="${product.category}"/></h4>
+              <c:choose>
+                <c:when test="${product.status == 1}">
+                  <%--<div>In stock</div>--%>
+                  <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
+                </c:when>
+                <c:when test="${product.status == 2}">
+                  <h3 class="warning">More on the way</h3>
+                </c:when>
+                <c:when test="${product.status == 3}">
+                  <h3 class="warning">Coming soon</h3>
+                </c:when>
+              </c:choose>
             </div>
           </div>
         </div>

@@ -39,7 +39,9 @@
               data-platform="${product.platform}">
             <div class="productItemInner">
               <div class="productImage">
-                <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />"/>
+                <a href="${pageContext.request.contextPath}/product/details?sku=${product.sku}">
+                  <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />"/>
+                </a>
               </div>
               <div class="productDetails">
                 <h3>

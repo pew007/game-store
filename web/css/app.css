@@ -23,6 +23,12 @@ a {
   float: left;
 }
 
+#navbar1 {
+  background-color: transparent !important;
+  background-image: none;
+  border: none;
+}
+
 #navbar1 img {
   height: 55px;
 }
@@ -95,6 +101,21 @@ a {
   font-size: 20px !important;
 }
 
+#searchBar .searchSubmit {
+  width: 100%;
+  padding: 0.5em 1em;
+  display: block;
+  background: red url("/image/search-icon.png") no-repeat center center;
+  background-size: 30px;
+  border: none;
+  height: 50px;
+  cursor: pointer;
+}
+
+#searchBar .searchSubmit:hover {
+  background-color: darkred;
+}
+
 /* Product list*/
 #mainContentBody #productList, #productContainer {
   list-style: none;
@@ -152,7 +173,7 @@ a {
   margin-top: 20px;
 }
 
-/* Product details*/
+/* Single product */
 #productContainer .productImage {
   width: 35%;
   float: left;
