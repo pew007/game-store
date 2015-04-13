@@ -22,26 +22,54 @@
       <div id="productContainer">
         <div class="productItem">
           <div class="productItemInner">
-            <%--@elvariable id="product" type="bean.Product"--%>
-            <div class="productImage">
-              <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />" />
+            <div class="productDetailsTop">
+              <%--@elvariable id="product" type="bean.Product"--%>
+              <div class="productImage">
+                <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />" />
+              </div>
+              <div class="productDetails">
+                <h1><c:out value="${product.vendorModel}"/></h1>
+                <h5><c:out value="${product.vendor}"/> <c:out value="${product.category}"/></h5>
+                <h5><c:out value="${product.platform}"/></h5>
+                <c:choose>
+                  <c:when test="${product.status == 1}">
+                    <div class="price">
+                      <h1>$<c:out value="${product.retail}"/></h1>
+                      <div>
+                        Quantity:
+                      <select name="quantity" id="quantity" style="margin-bottom: 5px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      </div>
+                      <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
+                    </div>
+                  </c:when>
+                  <c:when test="${product.status == 2}">
+                    <h3 class="warning">This product is currently out of stock but there is more on the way!</h3>
+                  </c:when>
+                  <c:when test="${product.status == 3}">
+                    <h3 class="warning">Coming soon</h3>
+                  </c:when>
+                </c:choose>
+              </div>
             </div>
-            <div class="productDetails">
-              <h1><c:out value="${product.vendorModel}"/></h1>
-              <h4><c:out value="${product.vendor}"/></h4>
-              <h4><c:out value="${product.category}"/></h4>
-              <c:choose>
-                <c:when test="${product.status == 1}">
-                  <%--<div>In stock</div>--%>
-                  <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
-                </c:when>
-                <c:when test="${product.status == 2}">
-                  <h3 class="warning">More on the way</h3>
-                </c:when>
-                <c:when test="${product.status == 3}">
-                  <h3 class="warning">Coming soon</h3>
-                </c:when>
-              </c:choose>
+            <div class="productDetailsBottom">
+              <div class="productDescription">
+                <h1>Description:</h1>
+                <p><c:out value="${product.description}"/></p>
+              </div>
+              <div class="productFeatures">
+                <h1>Features:</h1>
+                <ul>
+                <c:forEach var="feature" items="${product.features}">
+                  <li><c:out value="${feature}"/></li>
+                </c:forEach>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
