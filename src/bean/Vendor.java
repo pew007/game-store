@@ -9,9 +9,18 @@ import java.util.ArrayList;
 
 public class Vendor implements Serializable {
 
+    private int id;
     private String name;
 
     public Vendor() {}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -22,14 +31,16 @@ public class Vendor implements Serializable {
     }
 
     public static ArrayList<Vendor> getVendors() {
-        ResultSet resultSet = DBHelper.doQuery("SELECT vendorName FROM vendor");
+        ResultSet resultSet = DBHelper.doQuery("SELECT * FROM vendor");
 
         ArrayList<Vendor> vendors = new ArrayList<Vendor>();
         try {
             while (resultSet.next()) {
-                String vendorName = resultSet.getString("vendorName");
+                int id = resultSet.getInt("vendorID");
+                String name = resultSet.getString("vendorName");
                 Vendor vendor = new Vendor();
-                vendor.setName(vendorName);
+                vendor.setId(id);
+                vendor.setName(name);
                 vendors.add(vendor);
             }
             resultSet.close();

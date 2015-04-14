@@ -9,9 +9,18 @@ import java.util.ArrayList;
 
 public class Platform implements Serializable {
 
+    private int id;
     private String name;
 
     public Platform() {}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -22,14 +31,16 @@ public class Platform implements Serializable {
     }
 
     public static ArrayList<Platform> getPlatforms() {
-        ResultSet resultSet = DBHelper.doQuery("SELECT platformName FROM platform");
+        ResultSet resultSet = DBHelper.doQuery("SELECT * FROM platform");
 
         ArrayList<Platform> categories = new ArrayList<Platform>();
         try {
             while (resultSet.next()) {
-                String platformName = resultSet.getString("platformName");
+                int id = resultSet.getInt("platformID");
+                String name = resultSet.getString("platformName");
                 Platform platform = new Platform();
-                platform.setName(platformName);
+                platform.setId(id);
+                platform.setName(name);
                 categories.add(platform);
             }
             resultSet.close();

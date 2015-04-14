@@ -3,11 +3,20 @@ $(document).ready(function(){
   $('button').button();
 
   setupSidebarMenu();
+  setupSidebarSearchEventHandling();
   setupSortEventHandling();
 
   function setupSidebarMenu() {
     $( "#mainContentSidebarMenu" ).menu({
       items: "> :not(.ui-widget-header)"
+    });
+  }
+
+  function setupSidebarSearchEventHandling() {
+    $('#mainContentSidebarMenu li').click(function(){
+      var form = $(this).find('form');
+      console.log(form);
+      form.submit();
     });
   }
 
