@@ -10,7 +10,7 @@
         <form action="${pageContext.request.contextPath}/product/list">
           <input type="hidden" name="searchType" value="categoryID"/>
           <input type="hidden" name="searchId" value="<c:out value="${category.id}" />"/>
-        <a ><c:out value="${category.name}" /></a>
+          <c:out value="${category.name}" />
         </form>
       </li>
     </c:forEach>
@@ -23,7 +23,7 @@
         <form action="${pageContext.request.contextPath}/product/list">
           <input type="hidden" name="searchType" value="platformID"/>
           <input type="hidden" name="searchId" value="<c:out value="${platform.id}" />"/>
-          <a ><c:out value="${platform.name}" /></a>
+          <c:out value="${platform.name}" />
         </form>
       </li>
     </c:forEach>
@@ -36,7 +36,7 @@
         <form action="${pageContext.request.contextPath}/product/list">
           <input type="hidden" name="searchType" value="vendorID"/>
           <input type="hidden" name="searchId" value="<c:out value="${vendor.id}" />"/>
-          <a ><c:out value="${vendor.name}" /></a>
+          <c:out value="${vendor.name}" />
         </form>
       </li>
     </c:forEach>

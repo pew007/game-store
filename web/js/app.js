@@ -14,9 +14,7 @@ $(document).ready(function(){
 
   function setupSidebarSearchEventHandling() {
     $('#mainContentSidebarMenu li').click(function(){
-      var form = $(this).find('form');
-      console.log(form);
-      form.submit();
+      $(this).find('form').submit();
     });
   }
 

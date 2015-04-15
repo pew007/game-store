@@ -70,6 +70,7 @@ a {
 #sortBar {
   height: 30px;
   padding-left: 1em;
+  padding-top: 0.5em;
 }
 
 #sortBar ul {
@@ -88,10 +89,11 @@ a {
 #searchBar {
   padding-left: 1em;
   padding-top: 20px;
+  height: 50px;
 }
 
 #searchBar .searchbox {
-  height: 50px;
+  height: 100%;
   width: 100%;
   padding: 10px 20px;
   font-size: 20px !important;
