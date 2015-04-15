@@ -192,3 +192,14 @@ a {
 #productContainer h5 {
   margin: 0;
 }
+
+/* Search form */
+.searchInput {
+  float: left;
+  width: 75%;
+}
+
+.searchButton {
+  float: right;
+  width: 25%;
+}

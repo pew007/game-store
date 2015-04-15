@@ -8,8 +8,8 @@
     <c:forEach var="category" items="${categories}">
       <li>
         <form action="${pageContext.request.contextPath}/product/list">
-          <input type="hidden" name="searchType" value="categoryID"/>
-          <input type="hidden" name="searchId" value="<c:out value="${category.id}" />"/>
+          <input type="hidden" name="filterType" value="categoryID"/>
+          <input type="hidden" name="filterId" value="<c:out value="${category.id}" />"/>
           <c:out value="${category.name}" />
         </form>
       </li>
@@ -21,8 +21,8 @@
     <c:forEach var="platform" items="${platforms}">
       <li>
         <form action="${pageContext.request.contextPath}/product/list">
-          <input type="hidden" name="searchType" value="platformID"/>
-          <input type="hidden" name="searchId" value="<c:out value="${platform.id}" />"/>
+          <input type="hidden" name="filterType" value="platformID"/>
+          <input type="hidden" name="filterId" value="<c:out value="${platform.id}" />"/>
           <c:out value="${platform.name}" />
         </form>
       </li>
@@ -34,8 +34,8 @@
     <c:forEach var="vendor" items="${vendors}">
       <li>
         <form action="${pageContext.request.contextPath}/product/list">
-          <input type="hidden" name="searchType" value="vendorID"/>
-          <input type="hidden" name="searchId" value="<c:out value="${vendor.id}" />"/>
+          <input type="hidden" name="filterType" value="vendorID"/>
+          <input type="hidden" name="filterId" value="<c:out value="${vendor.id}" />"/>
           <c:out value="${vendor.name}" />
         </form>
       </li>

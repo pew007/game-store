@@ -122,35 +122,23 @@ public class Product implements Serializable {
         }
     }
 
-    public static ArrayList<Product> getProducts(String searchType, String searchId) {
-        String query;
-        if (searchType != null && searchId != null) {
-            query = "SELECT product.*, vendor.vendorName, category.categoryName, platform.platformName, on_hand.quantity\n" +
-                    "FROM product\n" +
-                    "LEFT JOIN (vendor, category, platform, on_hand)\n" +
-                    "ON (\n" +
-                    "\tproduct.vendorID = vendor.vendorID\n" +
-                    "\tAND\n" +
-                    "\tproduct.categoryID = category.categoryID\n" +
-                    "\tAND\n" +
-                    "\tproduct.platformID = platform.platformID\n" +
-                    "\tAND\n" +
-                    "\tproduct.sku = on_hand.sku\n" +
-                    ")\n" +
-                    "WHERE product." + searchType + "='" + searchId + "'";
-        } else {
-            query = "SELECT product.*, vendor.vendorName, category.categoryName, platform.platformName, on_hand.quantity\n" +
-                    "FROM product\n" +
-                    "LEFT JOIN (vendor, category, platform, on_hand)\n" +
-                    "ON (\n" +
-                    "\tproduct.vendorID = vendor.vendorID\n" +
-                    "\tAND\n" +
-                    "\tproduct.categoryID = category.categoryID\n" +
-                    "\tAND\n" +
-                    "\tproduct.platformID = platform.platformID\n" +
-                    "\tAND\n" +
-                    "\tproduct.sku = on_hand.sku\n" +
-                    ")";
+    public static ArrayList<Product> getProducts(String filterType, String filterId, String search) {
+        String query = "SELECT product.*, vendor.vendorName, category.categoryName, platform.platformName, on_hand.quantity\n" +
+                        "FROM product\n" +
+                        "LEFT JOIN (vendor, category, platform, on_hand)\n" +
+                        "ON (\n" +
+                        "\tproduct.vendorID = vendor.vendorID\n" +
+                        "\tAND\n" +
+                        "\tproduct.categoryID = category.categoryID\n" +
+                        "\tAND\n" +
+                        "\tproduct.platformID = platform.platformID\n" +
+                        "\tAND\n" +
+                        "\tproduct.sku = on_hand.sku\n" +
+                        ")";
+        if (filterType != null && filterId != null) {
+            query += "WHERE product." + filterType + "='" + filterId + "'";
+        } else if (search != null) {
+            query += "WHERE product.vendorModel LIKE '%" + search + "%'";
         }
 
         ResultSet resultSet = DBHelper.doQuery(query);

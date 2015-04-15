@@ -17,13 +17,14 @@ public class GetProductList extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String searchType = request.getParameter("searchType");
-        String searchId = request.getParameter("searchId");
+        String filterType = request.getParameter("filterType");
+        String filterId = request.getParameter("filterId");
+        String search = request.getParameter("search");
 
         ArrayList<Vendor> vendors = Vendor.getVendors();
         ArrayList<Category> categories = Category.getCategories();
         ArrayList<Platform> platforms = Platform.getPlatforms();
-        ArrayList<Product> allProducts = Product.getProducts(searchType, searchId);
+        ArrayList<Product> allProducts = Product.getProducts(filterType, filterId, search);
 
         HttpSession session = request.getSession(true);
         session.setAttribute("products", allProducts);
