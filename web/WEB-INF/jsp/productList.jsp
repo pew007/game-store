@@ -14,7 +14,6 @@
 </head>
 <body>
 <jsp:include page="shared/header.jsp" />
-
 <div id="mainContentContainer">
   <jsp:include page="shared/sidebar.jsp" />
   <div id="mainContentBody">
@@ -56,8 +55,18 @@
                 <div class="status">
                   <c:choose>
                     <c:when test="${product.status == 1}">
-                      <%--<div>In stock</div>--%>
-                      <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
+                      <form action="${pageContext.request.contextPath}/cart/summary" method="POST">
+                        <input type="hidden" name="sku" value="${product.sku}"/>
+                        <span>Quantity:</span>
+                        <select name="quantity" id="quantity" style="margin-bottom: 5px;">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                        <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
+                      </form>
                     </c:when>
                     <c:when test="${product.status == 2}">
                       <h3 class="warning">More on the way</h3>

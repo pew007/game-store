@@ -36,14 +36,14 @@
                     <div class="price">
                       <h1>$<c:out value="${product.retail}"/></h1>
                       <div>
-                        Quantity:
-                      <select name="quantity" id="quantity" style="margin-bottom: 5px;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
+                        <span>Quantity:</span>
+                        <select name="quantity" id="quantity" style="margin-bottom: 5px;">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
                       </div>
                       <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
                     </div>
