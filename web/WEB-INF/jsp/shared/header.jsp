@@ -4,6 +4,6 @@
     <li><a href="${pageContext.request.contextPath}/product/list">Home</a></li>
     <li><a href="#">About</a></li>
     <li><a href="#">Help</a></li>
-    <li><a href="#">My Cart</a></li>
+    <li><a href="${pageContext.request.contextPath}/cart/summary">My Cart</a></li>
   </ul>
 </div>

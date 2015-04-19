@@ -15,6 +15,10 @@ a {
   color: red;
 }
 
+.noBullet {
+  list-style: none;
+}
+
 .hide {
   display: none;
 }
@@ -202,4 +206,31 @@ a {
 .searchButton {
   float: right;
   width: 25%;
+}
+
+/* Shopping Cart */
+.cartSummaryTable {
+  width: 100%;
+  text-align: left;
+  border-spacing: 20px;
+}
+
+.cartItemQuantity {
+  width: 50px;
+}
+
+.cartSummaryAction {
+  float: right;
+  margin-top: 50px;
+}
+
+/* Checkout */
+.shippingInfoContainer {
+  width: 47%;
+  float: left;
+}
+
+.billingInfoContainer {
+  width: 47%;
+  float: right;
 }

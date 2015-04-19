@@ -26,7 +26,8 @@ public class GetProductList extends HttpServlet {
         ArrayList<Platform> platforms = Platform.getPlatforms();
         ArrayList<Product> allProducts = Product.getProducts(filterType, filterId, search);
 
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession();
+        session.setAttribute("shopper", "valid");
         session.setAttribute("products", allProducts);
         session.setAttribute("vendors", vendors);
         session.setAttribute("categories", categories);

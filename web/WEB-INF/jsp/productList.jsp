@@ -65,7 +65,7 @@
                           <option value="4">4</option>
                           <option value="5">5</option>
                         </select>
-                        <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
+                        <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button" style="font-size: 1em;">Add to cart</button>
                       </form>
                     </c:when>
                     <c:when test="${product.status == 2}">
