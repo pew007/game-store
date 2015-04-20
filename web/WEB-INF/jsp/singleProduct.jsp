@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -25,16 +26,16 @@
             <div class="productDetailsTop">
               <%--@elvariable id="product" type="bean.Product"--%>
               <div class="productImage">
-                <img src="<c:out value="${product.image}" />" alt="<c:out value="${product.sku}" />" />
+                <img src=${product.image} alt=${product.sku} />
               </div>
               <div class="productDetails">
-                <h1><c:out value="${product.vendorModel}"/></h1>
-                <h5><c:out value="${product.vendor}"/> <c:out value="${product.category}"/></h5>
-                <h5><c:out value="${product.platform}"/></h5>
+                <h1>${product.vendorModel}</h1>
+                <h5>${product.vendor} ${product.category}</h5>
+                <h5>${product.platform}</h5>
                 <c:choose>
                   <c:when test="${product.status == 1}">
                     <div class="price">
-                      <h1>$<c:out value="${product.retail}"/></h1>
+                      <h1><fmt:formatNumber type="CURRENCY">${product.retail}</fmt:formatNumber></h1>
                       <form action="${pageContext.request.contextPath}/cart/summary" method="POST">
                       <div>
                         <input type="hidden" name="sku" value="${product.sku}"/>
@@ -63,13 +64,13 @@
             <div class="productDetailsBottom">
               <div class="productDescription">
                 <h1>Description:</h1>
-                <p><c:out value="${product.description}"/></p>
+                <p>${product.description}</p>
               </div>
               <div class="productFeatures">
                 <h1>Features:</h1>
                 <ul>
                 <c:forEach var="feature" items="${product.features}">
-                  <li><c:out value="${feature}"/></li>
+                  <li>${feature}</li>
                 </c:forEach>
                 </ul>
               </div>
