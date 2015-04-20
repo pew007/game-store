@@ -89,7 +89,7 @@ a {
   position: relative;
 }
 
-/* Searchbar*/
+/* Searchbar */
 #searchBar {
   padding-left: 1em;
   padding-top: 20px;
@@ -176,24 +176,24 @@ a {
 }
 
 /* Single product */
-#productContainer .productDetailsTop {
+.productContainer .productDetailsTop {
   height: 300px;
 }
 
-#productContainer .productImage {
+.productContainer .productImage {
   width: 35%;
   float: left;
 }
 
-#productContainer img {
+.productContainer img {
   height: 250px;
 }
 
-#productContainer h1 {
+.productContainer h1 {
   margin: 0;
 }
 
-#productContainer h5 {
+.productContainer h5 {
   margin: 0;
 }
 

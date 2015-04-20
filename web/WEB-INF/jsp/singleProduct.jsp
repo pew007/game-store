@@ -35,7 +35,9 @@
                   <c:when test="${product.status == 1}">
                     <div class="price">
                       <h1>$<c:out value="${product.retail}"/></h1>
+                      <form action="${pageContext.request.contextPath}/cart/summary" method="POST">
                       <div>
+                        <input type="hidden" name="sku" value="${product.sku}"/>
                         <span>Quantity:</span>
                         <select name="quantity" id="quantity" style="margin-bottom: 5px;">
                           <option value="1">1</option>
@@ -46,6 +48,7 @@
                         </select>
                       </div>
                       <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
+                      </form>
                     </div>
                   </c:when>
                   <c:when test="${product.status == 2}">
