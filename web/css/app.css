@@ -65,25 +65,25 @@ a {
   padding: 0.3em;
 }
 
-#mainContentBody {
+.mainContentBody {
   width: 70%;
   float: right;
 }
 
 /* Sortbar*/
-#sortBar {
+.sortBar {
   height: 30px;
   padding-left: 1em;
   padding-top: 0.5em;
 }
 
-#sortBar ul {
+.sortBar ul {
   padding-left: 0;
   float: left;
   list-style: none;
 }
 
-#sortBar ul li {
+.sortBar ul li {
   float: left;
   margin: 0 10px;
   position: relative;
@@ -119,7 +119,7 @@ a {
 }
 
 /* Product list*/
-#mainContentBody #productList, #productContainer {
+.mainContentBody .productList, .productContainer {
   list-style: none;
   padding-left: 1em;
 }
@@ -225,12 +225,116 @@ a {
 }
 
 /* Checkout */
+.addressContainer {
+  height: 450px;
+}
+
 .shippingInfoContainer {
-  width: 47%;
+  width: 49%;
   float: left;
+  margin-right: 2%;
 }
 
 .billingInfoContainer {
-  width: 47%;
+  width: 49%;
   float: right;
 }
+
+.checkoutInfoForm ul {
+  padding: 0;
+}
+
+.checkoutInfoForm li {
+  margin-bottom: 10px;
+}
+
+.checkoutInfoForm label {
+  text-align: right;
+  margin-right: 20px;
+  width: 200px;
+  float: left;
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+.checkoutInfoForm input, select {
+  width: 40%;
+  height: 30px;
+}
+
+.billingSameAsShipping {
+  width: inherit !important;
+  height: inherit !important;
+}
+
+.checkoutInfoForm input {
+  padding: .5em;
+  border-radius: 5px;
+}
+
+.expirationDate {
+  width: 20%;
+}
+
+.checkoutAction {
+  float: right;
+  margin-top: 50px;
+}
+
+fieldset {
+  border-style: dotted;
+}
+
+/* Order Summary*/
+.orderSummaryContainer {
+  height: 500px;
+}
+
+.shippingAndBillingSummary {
+  margin-top: 20px;
+}
+
+.shippingInfo {
+  float: left;
+  width: 49%;
+  margin-right: 2%;
+}
+
+.shippingInfo li {
+  margin: 10px;
+}
+
+.billingInfo {
+  float: right;
+  width: 49%;
+}
+
+.shippingInfo fieldset {
+  height: 200px;
+}
+
+.billingInfo fieldset {
+  height: 200px;
+}
+
+.orderSummaryAction {
+  float: right;
+}
+
+.left {
+  text-align: right;
+  margin-right: 20px;
+  width: 20%;
+  float: left;
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+.right {
+  text-align: left;
+  padding: 5px 0;
+  float: left;
+  width: 60%;
+}
+
+/* Order confirmation */

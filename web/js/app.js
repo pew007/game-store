@@ -5,6 +5,9 @@ $(document).ready(function(){
   setupSidebarMenu();
   setupSidebarSearchEventHandling();
   setupSortEventHandling();
+  setupFormValidation();
+  setupCheckoutAddressCheckbox();
+  setupSubmitOrderEventHandling();
 
   function setupSidebarMenu() {
     $( "#mainContentSidebarMenu" ).menu({
@@ -13,7 +16,7 @@ $(document).ready(function(){
   }
 
   function setupSidebarSearchEventHandling() {
-    $('#mainContentSidebarMenu li').click(function(){
+    $('#mainContentSidebarMenu').find('li').click(function(){
       $(this).find('form').submit();
     });
   }
@@ -62,6 +65,61 @@ $(document).ready(function(){
       return 0;
     }
     return $(b).attr('data-platform') > $(a).attr('data-platform') ? -1 : 1;
+  }
+
+  function setupFormValidation() {
+    var requiredFields = $('.required');
+    requiredFields.focusin(function () {
+      $(this).val('');
+      $(this).removeClass('warning');
+    });
+
+    requiredFields.focusout(function () {
+      var input = $(this).val();
+      console.log(input);
+      if (input === '') {
+        $(this).val('required').addClass('warning');
+      }
+    });
+  }
+
+  function setupCheckoutAddressCheckbox() {
+    var shippingInfoForm = $('.shippingInfoForm');
+    var shippingFirstName = $('#shippingFirstName');
+    var shippingLastName = $('#shippingLastName');
+    var shippingAddress1 = $('#shippingAddress1');
+    var shippingAddress2 = $('#shippingAddress2');
+    var shippingCity = $('#shippingCity');
+    var shippingState = $('#shippingState');
+    var shippingZip = $('#shippingZip');
+    var shippingPhone = $('#shippingPhone');
+
+    $('.billingSameAsShipping').change(function () {
+      var isChecked = this.checked;
+      if (isChecked) {
+        $('#billingFirstName').val(shippingFirstName.val());
+        $('#billingLastName').val(shippingLastName.val());
+        $('#billingAddress1').val(shippingAddress1.val());
+        $('#billingAddress2').val(shippingAddress2.val());
+        $('#billingCity').val(shippingCity.val());
+        $('#billingState').val(shippingState.val());
+        $('#billingZip').val(shippingZip.val());
+        $('#billingPhone').val(shippingPhone.val());
+      } else {
+        var billingInfoContainer = $('.billingInfoContainer');
+        reset(billingInfoContainer);
+      }
+    });
+  }
+
+  function reset(container) {
+    container.find('input[type=text], select').val('');
+  }
+
+  function setupSubmitOrderEventHandling() {
+    $('.submitOrder').click(function () {
+      $('.checkoutInfoForm').submit();
+    });
   }
 
 });

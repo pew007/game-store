@@ -46,6 +46,10 @@ public class ShoppingCart implements Serializable {
 
         String skuToCheck = cartItem.getProduct().getSku();
 
+        if (this.cartItems.isEmpty()) {
+            return -1;
+        }
+
         for (int i = 0; i < this.cartItems.size(); i++) {
             String currentSku = this.cartItems.get(i).getProduct().getSku();
             if (currentSku.equals(skuToCheck)) {

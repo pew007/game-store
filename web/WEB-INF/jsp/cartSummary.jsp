@@ -14,9 +14,19 @@
 </head>
 <body>
 <jsp:include page="shared/header.jsp" />
-<div id="mainContentContainer">
+<div class="mainContentContainer">
   <div class="cartSummaryContainer">
     <h1>Cart Summary</h1>
+    <jsp:useBean id="shoppingCart" scope="session" type="bean.ShoppingCart"/>
+    <c:if test="${empty shoppingCart.cartItems}">
+    <div class="cartSummary">
+      <h2>Your cart is empty</h2>
+    </div>
+    <div class="cartSummaryAction">
+      <button><a href="${pageContext.request.contextPath}/product/list">Continue Shopping</a></button>
+    </div>
+    </c:if>
+    <c:if test="${not empty shoppingCart.cartItems}">
     <div class="cartSummary">
       <table class="cartSummaryTable">
         <thead>
@@ -27,7 +37,6 @@
           </tr>
         </thead>
         <tbody>
-        <jsp:useBean id="shoppingCart" scope="session" type="bean.ShoppingCart"/>
         <c:forEach var="cartItem" items="${shoppingCart.cartItems}">
           <tr>
             <td>
@@ -52,9 +61,9 @@
 
     <div class="cartSummaryAction">
       <button><a href="${pageContext.request.contextPath}/product/list">Continue Shopping</a></button>
-      <button><a href="${pageContext.request.contextPath}/checkout">Continue Checkout</a></button>
+      <button><a href="${pageContext.request.contextPath}/billing/info">Continue Checkout</a></button>
     </div>
-
+    </c:if>
   </div>
 </div>
 </body>

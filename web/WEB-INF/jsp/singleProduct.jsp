@@ -14,12 +14,12 @@
 <body>
 <jsp:include page="shared/header.jsp" />
 
-<div id="#mainContentContainer">
+<div class="mainContentContainer">
   <jsp:include page="shared/sidebar.jsp" />
-  <div id="mainContentBody">
+  <div class="mainContentBody">
     <jsp:include page="shared/searchbar.jsp" />
-    <div id="productListContainer">
-      <div id="productContainer">
+    <div class="productListContainer">
+      <div class="productContainer">
         <div class="productItem">
           <div class="productItemInner">
             <div class="productDetailsTop">

@@ -14,11 +14,11 @@
 </head>
 <body>
 <jsp:include page="shared/header.jsp" />
-<div id="mainContentContainer">
+<div class="mainContentContainer">
   <jsp:include page="shared/sidebar.jsp" />
-  <div id="mainContentBody">
+  <div class="mainContentBody">
     <jsp:include page="shared/searchbar.jsp" />
-    <div id="sortBar">
+    <div class="sortBar">
       <ul>
         <li>SORT BY: </li>
         <li><a href="#" data-sortby="price-low">Lowest Price</a></li>
@@ -28,8 +28,8 @@
         <li></li>
       </ul>
     </div>
-    <div id="productListContainer">
-      <ul id="productList">
+    <div class="productListContainer">
+      <ul class="productList">
         <%--@elvariable id="products" type="java.util.List"--%>
         <c:forEach var="product" items="${products}">
           <li class="productItem" id="product-${product.sku}"

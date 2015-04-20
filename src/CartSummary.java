@@ -21,12 +21,6 @@ public class CartSummary extends HttpServlet {
         int quantity = 0;
         String sku = request.getParameter("sku");
         String quantityString = request.getParameter("quantity");
-        if (quantityString != null) {
-            quantity = Integer.parseInt(quantityString);
-        }
-
-        Product product = Product.getSingleProduct(sku);
-        CartItem cartItem = new CartItem(product, quantity);
 
         HttpSession session = request.getSession(false);
         ShoppingCart shoppingCart = (ShoppingCart)session.getAttribute("shoppingCart");
@@ -34,6 +28,18 @@ public class CartSummary extends HttpServlet {
         if (shoppingCart == null) {
             shoppingCart = new ShoppingCart();
         }
+
+        if (sku == null && quantityString == null) {
+            session.setAttribute("shoppingCart", shoppingCart);
+            request.getRequestDispatcher("/WEB-INF/jsp/cartSummary.jsp").forward(request, response);
+        }
+
+        if (quantityString != null) {
+            quantity = Integer.parseInt(quantityString);
+        }
+
+        Product product = Product.getSingleProduct(sku);
+        CartItem cartItem = new CartItem(product, quantity);
 
         shoppingCart.addCartItem(cartItem);
 
