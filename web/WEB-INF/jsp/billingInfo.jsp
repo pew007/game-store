@@ -1,13 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.structure.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.theme.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/app.css"/>
+  <jsp:include page="shared/assets.jsp" />
   <title>Checkout</title>
 </head>
 <body>
@@ -21,17 +15,17 @@
       <ul class="noBullet">
           <li>
             <label for="shippingFirstName">First Name:</label>
-            <span><input type="text" name="shippingFirstName" class="text ui-widget-content ui-corner-all required" id="shippingFirstName"/></span>
+            <span><input type="text" data-validate="required" name="shippingFirstName" class="text ui-widget-content ui-corner-all" id="shippingFirstName"/></span>
           </li>
 
           <li>
             <label for="shippingLastName">Last Name:</label>
-            <span><input type="text" name="shippingLastName" class="text ui-widget-content ui-corner-all required" id="shippingLastName"/></span>
+            <span><input type="text" data-validate="required" name="shippingLastName" class="text ui-widget-content ui-corner-all" id="shippingLastName"/></span>
           </li>
 
           <li>
             <label for="shippingAddress1">Address 1:</label>
-            <span><input type="text" name="shippingAddress1" class="text ui-widget-content ui-corner-all required" id="shippingAddress1"/></span>
+            <span><input type="text" data-validate="required" name="shippingAddress1" class="text ui-widget-content ui-corner-all" id="shippingAddress1"/></span>
           </li>
 
           <li>
@@ -41,13 +35,13 @@
 
           <li>
             <label for="shippingCity">City:</label>
-            <span><input type="text" name="shippingCity" class="text ui-widget-content ui-corner-all required" id="shippingCity"/></span>
+            <span><input type="text" data-validate="required" name="shippingCity" class="text ui-widget-content ui-corner-all" id="shippingCity"/></span>
           </li>
 
           <li>
             <label for="shippingState">State/Province:</label>
             <span>
-              <select name="shippingState" class="text ui-widget-content ui-corner-all" id="shippingState">
+              <select name="shippingState" data-validate="required" class="text ui-widget-content ui-corner-all" id="shippingState">
                 <option value="">-- Select a state --</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -106,12 +100,12 @@
 
           <li>
             <label for="shippingZip">Zip/Postal:</label>
-            <span><input type="text" name="shippingZip" class="text ui-widget-content ui-corner-all required" id="shippingZip"/></span>
+            <span><input type="text" data-validate="required,zip" name="shippingZip" class="text ui-widget-content ui-corner-all" id="shippingZip"/></span>
           </li>
 
           <li>
             <label for="shippingPhone">Phone Number:</label>
-            <span><input type="text" name="shippingPhone" class="text ui-widget-content ui-corner-all required" id="shippingPhone"/></span>
+            <span><input type="text" data-validate="required,phoneNumber" name="shippingPhone" class="text ui-widget-content ui-corner-all" id="shippingPhone" placeholder="1234567890"/></span>
           </li>
 
           <li>
@@ -125,17 +119,17 @@
       <ul class="noBullet">
           <li>
             <label for="billingFirstName">First Name:</label>
-            <span><input type="text" name="billingFirstName" class="text ui-widget-content ui-corner-all required" id="billingFirstName"/></span>
+            <span><input type="text" data-validate="required" name="billingFirstName" class="text ui-widget-content ui-corner-all" id="billingFirstName"/></span>
           </li>
 
           <li>
             <label for="billingLastName">Last Name:</label>
-            <span><input type="text" name="billingLastName" class="text ui-widget-content ui-corner-all required" id="billingLastName"/></span>
+            <span><input type="text" data-validate="required" name="billingLastName" class="text ui-widget-content ui-corner-all" id="billingLastName"/></span>
           </li>
 
           <li>
             <label for="billingAddress1">Address 1:</label>
-            <span><input type="text" name="billingAddress1" class="text ui-widget-content ui-corner-all required" id="billingAddress1"/></span>
+            <span><input type="text" data-validate="required" name="billingAddress1" class="text ui-widget-content ui-corner-all" id="billingAddress1"/></span>
           </li>
 
           <li>
@@ -145,13 +139,13 @@
 
           <li>
             <label for="billingCity">City:</label>
-            <span><input type="text" name="billingCity" class="text ui-widget-content ui-corner-all required" id="billingCity"/></span>
+            <span><input type="text" data-validate="required" name="billingCity" class="text ui-widget-content ui-corner-all" id="billingCity"/></span>
           </li>
 
           <li>
             <label for="billingState">State/Province:</label>
             <span>
-              <select name="billingState" class="text ui-widget-content ui-corner-all" id="billingState">
+              <select data-validate="required" name="billingState" class="text ui-widget-content ui-corner-all" id="billingState">
                 <option value="">-- Select a state --</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -210,12 +204,12 @@
 
           <li>
             <label for="billingZip">Zip/Postal:</label>
-            <span><input type="text" name="billingZip" class="text ui-widget-content ui-corner-all required" id="billingZip"/></span>
+            <span><input type="text" data-validate="required,zip" name="billingZip" class="text ui-widget-content ui-corner-all" id="billingZip"/></span>
           </li>
 
           <li>
             <label for="billingPhone">Phone Number:</label>
-            <span><input type="text" name="billingPhone" class="text ui-widget-content ui-corner-all required" id="billingPhone"/></span>
+            <span><input type="text" data-validate="required,phoneNumber" name="billingPhone" class="text ui-widget-content ui-corner-all" id="billingPhone" placeholder="1234567890"/></span>
           </li>
         </ul>
     </div>
@@ -227,7 +221,7 @@
         <li>
           <label for="paymentCardType">Card Type:</label>
           <span>
-            <select name="paymentCardType" class="text ui-widget-content ui-corner-all" id="paymentCardType">
+            <select data-validate="required" name="paymentCardType" class="text ui-widget-content ui-corner-all" id="paymentCardType">
               <option value="Visa">Visa</option>
               <option value="MasterCard">Master Card</option>
               <option value="Amex">American Express</option>
@@ -238,13 +232,13 @@
 
         <li>
           <label for="paymentCardNumber">Card Number:</label>
-          <span><input type="text" name="paymentCardNumber" class="text ui-widget-content ui-corner-all required" id="paymentCardNumber"/></span>
+          <span><input type="text" data-validate="required,cardNumber" name="paymentCardNumber" class="text ui-widget-content ui-corner-all" id="paymentCardNumber"/></span>
         </li>
 
         <li>
           <label>Expires:</label>
           <span>
-            <select name="paymentCardExpireMonth" class="text ui-widget-content ui-corner-all expirationDate">
+            <select data-validate="required" name="paymentCardExpireMonth" class="text ui-widget-content ui-corner-all expirationDate">
               <option value="">Month</option>
               <option value="1">January</option>
               <option value="2">Feburary</option>
@@ -261,7 +255,7 @@
           </select>
           </span>
           <span>
-            <select name="paymentCardExpireYear" class="text ui-widget-content ui-corner-all expirationDate">
+            <select data-validate="required" name="paymentCardExpireYear" class="text ui-widget-content ui-corner-all expirationDate">
               <option value="">Year</option>
               <option value="2014">2014</option>
               <option value="2015">2015</option>
@@ -279,7 +273,7 @@
 
         <li>
           <label for="paymentCardCSV">Security Code:</label>
-          <span><input type="text" name="paymentCardCSV" class="text ui-widget-content ui-corner-all required" id="paymentCardCSV"/></span>
+          <span><input type="password" data-validate="required,csv" name="paymentCardCSV" class="text ui-widget-content ui-corner-all" id="paymentCardCSV"/></span>
         </li>
       </ul>
     </fieldset>

@@ -25,7 +25,7 @@ public class RemoveCartItem extends HttpServlet {
 
         boolean isItemRemoved = shoppingCart.removeCartItem(sku);
 
-        HashMap<String, String> responseHash = new HashMap<>();
+        HashMap<String, String> responseHash = new HashMap<String, String>();
 
         if (isItemRemoved) {
             responseHash.put("status", "OK");

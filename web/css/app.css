@@ -363,3 +363,7 @@ table th {
   background-color: #666;
   color: #ffffff;
 }
+
+.orderConfirmationTop {
+  height: 350px;
+}

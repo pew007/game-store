@@ -3,13 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.structure.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.theme.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/app.css"/>
+  <jsp:include page="shared/assets.jsp" />
   <title>Cart Summary</title>
 </head>
 <body>
@@ -42,8 +36,20 @@
         <tr>
           <td></td>
           <td></td>
+          <td style="text-align: right;">Shipping:</td>
+          <td>$5.00</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td style="text-align: right;">Tax:</td>
+          <td><fmt:formatNumber type="CURRENCY">${shoppingCart.tax}</fmt:formatNumber></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
           <td style="text-align: right;">Sub-Total:</td>
-          <td><fmt:formatNumber type="CURRENCY">${shoppingCart.totalPrice}</fmt:formatNumber></td>
+          <td><fmt:formatNumber type="CURRENCY">${shoppingCart.grandTotal}</fmt:formatNumber></td>
         </tr>
         </tbody>
       </table>
@@ -93,7 +99,7 @@
             </li>
             <li>
               <span class="left">Card:</span>
-              <div class="right">${billingInfo.cardNumber}</div>
+              <div class="right">${billingInfo.maskedCardNumber}</div>
             </li>
             <li>
               <span class="left">Expiration:</span>
@@ -107,7 +113,7 @@
   </div>
 
   <div class="orderSummaryAction">
-    <button><a href="${pageContext.request.contextPath}/billing/info"></a>Edit Order</button>
+    <button class="editOrder">Edit Order</button>
     <button><a href="${pageContext.request.contextPath}/order/confirmation">Place Order</a></button>
   </div>
 </div>

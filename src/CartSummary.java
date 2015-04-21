@@ -1,5 +1,3 @@
-import bean.CartItem;
-import bean.Product;
 import bean.ShoppingCart;
 
 import javax.servlet.ServletException;

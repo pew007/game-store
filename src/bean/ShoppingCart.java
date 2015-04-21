@@ -28,6 +28,14 @@ public class ShoppingCart implements Serializable {
         this.totalPrice = totalPrice;
     }
 
+    public double getTax() {
+        return 0.08 * (this.totalPrice + 5.00);
+    }
+
+    public double getGrandTotal() {
+        return this.totalPrice + this.getTax() + 5.00;
+    }
+
     public void addCartItem(String sku, int quantity) {
 
         Product product = Product.getSingleProduct(sku);

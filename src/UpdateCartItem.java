@@ -26,7 +26,7 @@ public class UpdateCartItem extends HttpServlet {
 
         boolean isItemUpdated = shoppingCart.updateCartItem(sku, quantity);
 
-        HashMap<String, String> responseHash = new HashMap<>();
+        HashMap<String, String> responseHash = new HashMap<String, String>();
 
         if (isItemUpdated) {
             responseHash.put("status", "OK");

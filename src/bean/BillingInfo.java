@@ -124,4 +124,16 @@ public class BillingInfo implements Serializable {
     public void setSecurityCode(String securityCode) {
         this.securityCode = securityCode;
     }
+
+    public String getMaskedCardNumber() {
+
+        String cardNumber = this.cardNumber;
+        String lastFourDigits = cardNumber.substring(cardNumber.length() - 4);
+
+        for (int i = 0; i < cardNumber.length() - 5; i++) {
+            cardNumber = cardNumber.replace(cardNumber.charAt(i), 'x');
+        }
+
+        return cardNumber + lastFourDigits;
+    }
 }

@@ -6,9 +6,14 @@ $(document).ready(function(){
   setupSidebarSearchEventHandling();
   setupSortEventHandling();
   setupEditCartEventHandling();
-  setupFormValidation();
   setupCheckoutAddressCheckbox();
   setupSubmitOrderEventHandling();
+  setupValidationRules();
+
+  $('.editOrder').click(function () {
+    console.log('clicke');
+    window.location.href = "/billing/info";
+  });
 
   function setupSidebarMenu() {
     $( "#mainContentSidebarMenu" ).menu({
@@ -68,20 +73,31 @@ $(document).ready(function(){
     return $(b).attr('data-platform') > $(a).attr('data-platform') ? -1 : 1;
   }
 
-  function setupFormValidation() {
-    var requiredFields = $('.required');
-    requiredFields.focusin(function () {
-      $(this).val('');
-      $(this).removeClass('warning');
+  function setupEditCartEventHandling() {
+    $(document).on('click', '.removeCartItem', function(){
+      var container = $(this).closest('tr');
+      var sku = container.attr('id');
+
+      $.post('/item/remove', {sku: sku}, function(data){
+        if (data.status === 'OK') {
+          window.location.href = "/cart/summary";
+        }
+      });
     });
 
-    requiredFields.focusout(function () {
-      var input = $(this).val();
-      console.log(input);
-      if (input === '') {
-        $(this).val('required').addClass('warning');
-      }
-    });
+    $(document).on('click', '.updateCartItem', function(){
+      var container = $(this).closest('tr');
+      var sku = container.attr('id');
+      var quantity = container.find('.cartItemQuantity').val();
+
+      console.log(quantity);
+
+      $.post('/item/update', {sku: sku, quantity: quantity}, function(data){
+        if (data.status === 'OK') {
+          window.location.href = "/cart/summary";
+        }
+      });
+    })
   }
 
   function setupCheckoutAddressCheckbox() {
@@ -123,30 +139,40 @@ $(document).ready(function(){
     });
   }
 
-  function setupEditCartEventHandling() {
-    $(document).on('click', '.removeCartItem', function(){
-      var container = $(this).closest('tr');
-      var sku = container.attr('id');
-
-      $.post('/item/remove', {sku: sku}, function(data){
-        if (data.status === 'OK') {
-          window.location.href = "/cart/summary";
+  function setupValidationRules() {
+    $.verify.addRules({
+      zip: function(r) {
+        var data = r.val();
+        if (data.match(/^\d{5}$/)) {
+          return true;
         }
-      });
+        return "Invalid zip code!";
+      },
+
+      phoneNumber: function(r) {
+        var data = r.val();
+        if (data.match(/^\d{10}$/)) {
+          return true;
+        }
+        return "Invalid phone number!";
+      },
+
+      cardNumber: function(r) {
+        var data = r.val();
+        if (data.match(/^(4\d{15}|5[1-5][0-9]{14}|3[47][0-9]{13}|6(?:011|5[0-9]{2})[0-9]{12})$/)) {
+          return true;
+        }
+        return "Invalid card number!";
+      },
+
+      csv: function(r) {
+        var data = r.val();
+        if (data.match(/^\d{3}\d?$/)) {
+          return true;
+        }
+        return "Invalid security code!";
+      }
     });
-
-    $(document).on('click', '.updateCartItem', function(){
-      var container = $(this).closest('tr');
-      var sku = container.attr('id');
-      var quantity = container.find('.cartItemQuantity').val();
-
-      console.log(quantity);
-
-      $.post('/item/update', {sku: sku, quantity: quantity}, function(data){
-        if (data.status === 'OK') {
-          window.location.href = "/cart/summary";
-        }
-      });
-    })
   }
+
 });

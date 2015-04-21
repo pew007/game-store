@@ -19,8 +19,6 @@ public class OrderConfirmation extends HttpServlet {
         HttpSession session = request.getSession(false);
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
-        session.removeAttribute("shoppingCart");
-
         // TODO: modify db
 
         request.getRequestDispatcher("/WEB-INF/jsp/orderConfirmation.jsp").forward(request, response);
