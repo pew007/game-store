@@ -114,7 +114,7 @@
 
   <div class="orderSummaryAction">
     <button class="editOrder">Edit Order</button>
-    <button><a href="${pageContext.request.contextPath}/order/confirmation">Place Order</a></button>
+    <button class="placeOrder">Place Order</button>
   </div>
 </div>
 </body>

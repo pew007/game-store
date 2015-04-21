@@ -280,7 +280,7 @@
   </div>
 
   <div class="checkoutAction">
-    <button><a href="${pageContext.request.contextPath}/cart/summary">Edit Cart</a></button>
+    <button class="editCart">Edit Cart</button>
     <button class="submitOrder">View Order Summary</button>
   </div>
 

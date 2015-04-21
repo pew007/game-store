@@ -11,8 +11,23 @@ $(document).ready(function(){
   setupValidationRules();
 
   $('.editOrder').click(function () {
-    console.log('clicke');
     window.location.href = "/billing/info";
+  });
+
+  $('.continueCheckout').click(function () {
+    window.location.href = "/billing/info";
+  });
+
+  $('.editCart').click(function () {
+    window.location.href = "/cart/summary";
+  });
+
+  $('.continueShopping').click(function () {
+    window.location.href = "/product/list";
+  });
+
+  $('.placeOrder').click(function () {
+    window.location.href = "/order/confirmation";
   });
 
   function setupSidebarMenu() {

@@ -17,7 +17,7 @@
       <h2>Your cart is empty</h2>
     </div>
     <div class="cartSummaryAction">
-      <button><a href="${pageContext.request.contextPath}/product/list">Continue Shopping</a></button>
+      <button class="continueShopping">Continue Shopping</button>
     </div>
     </c:if>
     <c:if test="${not empty shoppingCart.cartItems}">
@@ -60,8 +60,8 @@
     </div>
 
     <div class="cartSummaryAction">
-      <button><a href="${pageContext.request.contextPath}/product/list">Continue Shopping</a></button>
-      <button><a href="${pageContext.request.contextPath}/billing/info">Continue Checkout</a></button>
+      <button class="continueShopping">Continue Shopping</button>
+      <button class="continueCheckout">Continue Checkout</button>
     </div>
     </c:if>
   </div>
