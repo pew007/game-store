@@ -27,21 +27,19 @@ public class CartSummary extends HttpServlet {
 
         if (shoppingCart == null) {
             shoppingCart = new ShoppingCart();
+            session.setAttribute("shoppingCart", shoppingCart);
         }
 
         if (sku == null && quantityString == null) {
-            session.setAttribute("shoppingCart", shoppingCart);
             request.getRequestDispatcher("/WEB-INF/jsp/cartSummary.jsp").forward(request, response);
+            return;
         }
 
         if (quantityString != null) {
             quantity = Integer.parseInt(quantityString);
         }
 
-        Product product = Product.getSingleProduct(sku);
-        CartItem cartItem = new CartItem(product, quantity);
-
-        shoppingCart.addCartItem(cartItem);
+        shoppingCart.addCartItem(sku, quantity);
 
         session.setAttribute("shoppingCart", shoppingCart);
 

@@ -12,9 +12,18 @@
 </head>
 <body>
 <jsp:include page="shared/header.jsp" />
-<div class="mainContentContainer">
-  <div class="orderConfirmationContainer">
+<div class="mainContentContainer" style="padding-top: 3em;">
+  <div class="orderConfirmationGraphic" style="width: 35%; float: left; text-align: right;">
+    <img src="${pageContext.request.contextPath}/image/check-mark.png" alt="complete" style="max-width: 200px;"/>
+  </div>
+  <div class="orderConfirmationContainer" style="width: 60%; float: right; padding-left: 5%;">
     <h1>Thank you for your order</h1>
+    <p>
+      Order Number: AS235D
+    </p>
+    <p>
+      Estimate shipping
+    </p>
   </div>
 </div>
 </body>

@@ -35,18 +35,20 @@
                 <c:choose>
                   <c:when test="${product.status == 1}">
                     <div class="price">
-                      <h1><fmt:formatNumber type="CURRENCY">${product.retail}</fmt:formatNumber></h1>
+                      <h1 style="padding-top: 0.5em;"><fmt:formatNumber type="CURRENCY">${product.retail}</fmt:formatNumber></h1>
                       <form action="${pageContext.request.contextPath}/cart/summary" method="POST">
                       <div>
                         <input type="hidden" name="sku" value="${product.sku}"/>
+                        <div style="padding: 0.5em 0;">
                         <span>Quantity:</span>
-                        <select name="quantity" id="quantity" style="margin-bottom: 5px;">
+                        <select name="quantity" id="quantity" style="margin-bottom: 5px; max-width: 80px;">
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
                           <option value="5">5</option>
                         </select>
+                        </div>
                       </div>
                       <button class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all button">Add to cart</button>
                       </form>

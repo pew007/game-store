@@ -23,7 +23,8 @@
         <tr>
           <th>Product Description</th>
           <th>Quantity</th>
-          <th>Price</th>
+          <th>Unit Price</th>
+          <th>Total Price</th>
         </tr>
         </thead>
         <tbody>
@@ -34,10 +35,12 @@
               <a href="${pageContext.request.contextPath}/product/details?sku=${cartItem.product.sku}">${cartItem.product.vendorModel}</a>
             </td>
             <td>${cartItem.quantity}</td>
-            <td><fmt:formatNumber type="CURRENCY">${cartItem.product.retail}</fmt:formatNumber></td>
+            <td><fmt:formatNumber type="CURRENCY">${cartItem.price}</fmt:formatNumber></td>
+            <td><fmt:formatNumber type="CURRENCY">${cartItem.totalPrice}</fmt:formatNumber></td>
           </tr>
         </c:forEach>
         <tr>
+          <td></td>
           <td></td>
           <td style="text-align: right;">Sub-Total:</td>
           <td><fmt:formatNumber type="CURRENCY">${shoppingCart.totalPrice}</fmt:formatNumber></td>

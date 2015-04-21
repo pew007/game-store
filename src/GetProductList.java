@@ -27,6 +27,7 @@ public class GetProductList extends HttpServlet {
         ArrayList<Product> allProducts = Product.getProducts(filterType, filterId, search);
 
         HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(24 * 60);
         session.setAttribute("shopper", "valid");
         session.setAttribute("products", allProducts);
         session.setAttribute("vendors", vendors);

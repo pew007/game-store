@@ -33,24 +33,27 @@
           <tr>
             <th>Product Description</th>
             <th>Quantity</th>
-            <th>Price</th>
+            <th>Unit Price</th>
+            <th>Total Price</th>
           </tr>
         </thead>
         <tbody>
         <c:forEach var="cartItem" items="${shoppingCart.cartItems}">
-          <tr>
+          <tr class="cartItem" id="${cartItem.product.sku}">
             <td>
               <a href="${pageContext.request.contextPath}/product/details?sku=${cartItem.product.sku}">${cartItem.product.vendorModel}</a>
             </td>
             <td>
               <input type="text" class="cartItemQuantity" name="quantity" value="${cartItem.quantity}"/>
-              <a href="#">Update</a>
-              <a href="#">Remove</a>
+              <a href="#" class="updateCartItem">Update</a>
+              <a href="#" class="removeCartItem">Remove</a>
             </td>
-            <td><fmt:formatNumber type="CURRENCY">${cartItem.product.retail}</fmt:formatNumber></td>
+            <td><fmt:formatNumber type="CURRENCY">${cartItem.price}</fmt:formatNumber></td>
+            <td><fmt:formatNumber type="CURRENCY">${cartItem.totalPrice}</fmt:formatNumber></td>
           </tr>
         </c:forEach>
           <tr>
+            <td></td>
             <td></td>
             <td style="text-align: right;">Sub-Total:</td>
             <td><fmt:formatNumber type="CURRENCY">${shoppingCart.totalPrice}</fmt:formatNumber></td>

@@ -7,6 +7,15 @@ body {
   min-width: 960px;
 }
 
+li.ui-menu-item form {
+  margin-bottom: 0;
+}
+
+.price {
+  font-weight: 700;
+  color: #333;
+}
+
 a {
   text-decoration: none;
 }
@@ -25,10 +34,11 @@ a {
 
 #navbar1 a {
   float: left;
+  color: white;
 }
 
 #navbar1 {
-  background-color: transparent !important;
+  background-color: black;
   background-image: none;
   border: none;
 }
@@ -172,7 +182,7 @@ a {
 }
 
 .productPrice button {
-  margin-top: 20px;
+  margin-top: 0.5em;
 }
 
 /* Single product */
@@ -212,7 +222,6 @@ a {
 .cartSummaryTable {
   width: 100%;
   text-align: left;
-  border-spacing: 20px;
 }
 
 .cartItemQuantity {
@@ -337,4 +346,20 @@ fieldset {
   width: 60%;
 }
 
-/* Order confirmation */
+table {
+  border: none;
+}
+
+table th, table td {
+  padding: 0.5em;
+  background-color: #f2f2f2;
+}
+
+thead {
+  background-color: #cccccc;
+}
+
+table th {
+  background-color: #666;
+  color: #ffffff;
+}

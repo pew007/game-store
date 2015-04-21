@@ -28,10 +28,13 @@ public class ShoppingCart implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public void addCartItem(CartItem cartItem) {
+    public void addCartItem(String sku, int quantity) {
+
+        Product product = Product.getSingleProduct(sku);
+        CartItem cartItem = new CartItem(product, quantity);
 
         int index = this.itemExistsInCart(cartItem);
-        if ( index >= 0) {
+        if (index >= 0) {
             CartItem itemToUpdate = this.cartItems.get(index);
             itemToUpdate.setQuantity(itemToUpdate.getQuantity() + cartItem.getQuantity());
             this.cartItems.set(index, itemToUpdate);
@@ -39,7 +42,7 @@ public class ShoppingCart implements Serializable {
             this.cartItems.add(cartItem);
         }
 
-        this.totalPrice += cartItem.getPrice();
+        this.totalPrice += cartItem.getTotalPrice();
     }
 
     public int itemExistsInCart(CartItem cartItem) {
@@ -58,5 +61,37 @@ public class ShoppingCart implements Serializable {
         }
 
         return -1;
+    }
+
+    public boolean removeCartItem(String sku) {
+
+        for (int i = 0; i < this.cartItems.size(); i++) {
+            CartItem cartItem = this.cartItems.get(i);
+            if (cartItem.getProduct().getSku().equals(sku)) {
+                this.cartItems.remove(i);
+                this.totalPrice -= cartItem.getTotalPrice();
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean updateCartItem(String sku, int quantity) {
+
+        try {
+            for (CartItem cartItem : this.cartItems) {
+                if (cartItem.getProduct().getSku().equals(sku)) {
+                    this.totalPrice -= cartItem.getPrice() * cartItem.getQuantity();
+                    this.totalPrice += cartItem.getPrice() * quantity;
+                    cartItem.setQuantity(quantity);
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
+        return false;
     }
 }

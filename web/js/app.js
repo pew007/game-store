@@ -5,6 +5,7 @@ $(document).ready(function(){
   setupSidebarMenu();
   setupSidebarSearchEventHandling();
   setupSortEventHandling();
+  setupEditCartEventHandling();
   setupFormValidation();
   setupCheckoutAddressCheckbox();
   setupSubmitOrderEventHandling();
@@ -22,7 +23,7 @@ $(document).ready(function(){
   }
 
   function setupSortEventHandling() {
-    $('#sortBar').find('a[data-sortby]').click(function () {
+    $('.sortBar').find('a[data-sortby]').click(function () {
       var sortBy = $(this).data('sortby');
       var sortQueue = $('.productItem');
 
@@ -38,7 +39,7 @@ $(document).ready(function(){
 
       sortQueue.each(function (index, value) {
         var productItem = $(value);
-        $('#productList').append(productItem);
+        $('.productList').append(productItem);
       });
 
       return false;
@@ -122,4 +123,30 @@ $(document).ready(function(){
     });
   }
 
+  function setupEditCartEventHandling() {
+    $(document).on('click', '.removeCartItem', function(){
+      var container = $(this).closest('tr');
+      var sku = container.attr('id');
+
+      $.post('/item/remove', {sku: sku}, function(data){
+        if (data.status === 'OK') {
+          window.location.href = "/cart/summary";
+        }
+      });
+    });
+
+    $(document).on('click', '.updateCartItem', function(){
+      var container = $(this).closest('tr');
+      var sku = container.attr('id');
+      var quantity = container.find('.cartItemQuantity').val();
+
+      console.log(quantity);
+
+      $.post('/item/update', {sku: sku, quantity: quantity}, function(data){
+        if (data.status === 'OK') {
+          window.location.href = "/cart/summary";
+        }
+      });
+    })
+  }
 });

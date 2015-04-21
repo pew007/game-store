@@ -39,4 +39,8 @@ public class CartItem implements Serializable {
     public void setPrice(float price) {
         this.price = price;
     }
+
+    public float getTotalPrice() {
+        return this.quantity * this.price;
+    }
 }
