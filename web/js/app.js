@@ -40,6 +40,8 @@ $(document).ready(function(){
         sortQueue.sort(sortByProductName);
       } else if (sortBy === 'platform') {
         sortQueue.sort(sortByPlatform);
+      } else if (sortBy === 'avail') {
+        sortQueue.sort(sortByAvailability);
       }
 
       sortQueue.each(function (index, value) {
@@ -73,6 +75,10 @@ $(document).ready(function(){
     return $(b).attr('data-platform') > $(a).attr('data-platform') ? -1 : 1;
   }
 
+  function sortByAvailability(a,b) {
+    return parseInt($(a).attr('data-status')) - parseInt($(b).attr('data-status'));
+  }
+
   function setupEditCartEventHandling() {
     $(document).on('click', '.removeCartItem', function(){
       var container = $(this).closest('tr');
@@ -86,17 +92,7 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '.updateCartItem', function(){
-      var container = $(this).closest('tr');
-      var sku = container.attr('id');
-      var quantity = container.find('.cartItemQuantity').val();
-
-      console.log(quantity);
-
-      $.post('/item/update', {sku: sku, quantity: quantity}, function(data){
-        if (data.status === 'OK') {
-          window.location.href = "/cart/summary";
-        }
-      });
+      $(this).closest("#editCartItemForm").submit();
     })
   }
 

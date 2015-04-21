@@ -1,6 +1,7 @@
 html {
-  padding: 0 150px;
+  padding: 0 150px 150px 150px;
   font-family: 'Arial', sans-serif;
+
 }
 
 body {
@@ -366,4 +367,8 @@ table th {
 
 .orderConfirmationTop {
   height: 350px;
+}
+
+.emptyProductList {
+  float: left;
 }

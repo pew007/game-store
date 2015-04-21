@@ -19,17 +19,26 @@
         <li><a href="#" data-sortby="price-high">Highest Price</a></li>
         <li><a href="#" data-sortby="name">Name</a></li>
         <li><a href="#" data-sortby="platform">Platform</a></li>
+        <li><a href="#" data-sortby="avail">Availability</a></li>
         <li></li>
       </ul>
     </div>
+    <%--@elvariable id="products" type="java.util.List"--%>
     <div class="productListContainer">
+      <c:if test="${empty products}">
+        <div class="productList emptyProductList">
+          <h1>No products matching your search</h1>
+        </div>
+      </c:if>
+
+      <c:if test="${not empty products}">
       <ul class="productList">
-        <%--@elvariable id="products" type="java.util.List"--%>
         <c:forEach var="product" items="${products}">
           <li class="productItem" id="product-${product.sku}"
               data-name="${product.vendorModel}"
               data-price="${product.retail}"
-              data-platform="${product.platform}">
+              data-platform="${product.platform}"
+              data-status="${product.status}">
             <div class="productItemInner">
               <div class="productImage">
                 <a href="${pageContext.request.contextPath}/product/details?sku=${product.sku}">
@@ -76,6 +85,7 @@
             </div>
           </li>
         </c:forEach>
+        </c:if>
       </ul>
     </div>
   </div>

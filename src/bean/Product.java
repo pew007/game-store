@@ -219,4 +219,13 @@ public class Product implements Serializable {
         this.setQuantity(quantity);
         this.setStatus(quantity);
     }
+
+    public void markAsSold(int quantity) throws SQLException {
+
+        int newQuantity = this.quantity - quantity;
+
+        DBHelper.doUpdate("UPDATE `on_hand` " +
+                "SET quantity='" + newQuantity + "'" +
+                "WHERE sku='" + this.getSku() + "'");
+    }
 }

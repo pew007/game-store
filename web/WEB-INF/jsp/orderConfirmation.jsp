@@ -11,12 +11,12 @@
 <div class="mainContentContainer" style="padding-top: 3em;">
   <div class="orderConfirmationTop">
     <div class="orderConfirmationGraphic" style="width: 35%; float: left; text-align: right;">
-      <img src="${pageContext.request.contextPath}/image/check-mark.png" alt="complete" style="max-width: 200px;"/>
+      <img src="${pageContext.request.contextPath}/image/checkmark.png" alt="complete" style="max-width: 200px;"/>
     </div>
     <div class="orderConfirmationContainer" style="width: 60%; float: right; padding-left: 5%;">
       <h1>Thank you for your order</h1>
       <jsp:useBean id="shippingInfo" scope="session" type="bean.ShippingInfo"/>
-      <ul class="noBullet">
+      <ul class="noBullet" style="padding: 0;">
         <li>
           <span class="left">Order Number:</span>
           <span class="right">AD35FG2</span>

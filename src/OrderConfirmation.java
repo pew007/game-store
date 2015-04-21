@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/order/confirmation")
 public class OrderConfirmation extends HttpServlet {
@@ -19,7 +20,12 @@ public class OrderConfirmation extends HttpServlet {
         HttpSession session = request.getSession(false);
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
-        // TODO: modify db
+        try {
+            shoppingCart.checkout();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
 
         request.getRequestDispatcher("/WEB-INF/jsp/orderConfirmation.jsp").forward(request, response);
     }

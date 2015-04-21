@@ -38,9 +38,12 @@
               <a href="${pageContext.request.contextPath}/product/details?sku=${cartItem.product.sku}">${cartItem.product.vendorModel}</a>
             </td>
             <td>
-              <input type="text" class="cartItemQuantity" name="quantity" value="${cartItem.quantity}"/>
-              <a href="#" class="updateCartItem">Update</a>
-              <a href="#" class="removeCartItem">Remove</a>
+              <form id="editCartItemForm" action="${pageContext.request.contextPath}/cart/summary" method="POST" style="margin-bottom: 0;">
+                <input type="hidden" name="sku" value="${cartItem.product.sku}"/>
+                <input type="text" data-validate="required,maxVal(${cartItem.product.quantity})" class="cartItemQuantity" name="quantity" value="${cartItem.quantity}"/>
+                <a href="#" class="updateCartItem">Update</a>
+                <a href="#" class="removeCartItem">Remove</a>
+              </form>
             </td>
             <td><fmt:formatNumber type="CURRENCY">${cartItem.price}</fmt:formatNumber></td>
             <td><fmt:formatNumber type="CURRENCY">${cartItem.totalPrice}</fmt:formatNumber></td>

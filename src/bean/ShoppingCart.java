@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ShoppingCart implements Serializable {
@@ -21,11 +22,17 @@ public class ShoppingCart implements Serializable {
     }
 
     public float getTotalPrice() {
-        return totalPrice;
+        float total = 0;
+        for (CartItem cartItem : this.cartItems) {
+            total += cartItem.getTotalPrice();
+        }
+        return total;
     }
 
     public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
+        for (CartItem cartItem : this.cartItems) {
+            this.totalPrice += cartItem.getTotalPrice();
+        }
     }
 
     public double getTax() {
@@ -33,7 +40,7 @@ public class ShoppingCart implements Serializable {
     }
 
     public double getGrandTotal() {
-        return this.totalPrice + this.getTax() + 5.00;
+        return this.getTotalPrice() + this.getTax() + 5.00;
     }
 
     public void addCartItem(String sku, int quantity) {
@@ -44,7 +51,7 @@ public class ShoppingCart implements Serializable {
         int index = this.itemExistsInCart(cartItem);
         if (index >= 0) {
             CartItem itemToUpdate = this.cartItems.get(index);
-            itemToUpdate.setQuantity(itemToUpdate.getQuantity() + cartItem.getQuantity());
+            itemToUpdate.setQuantity(cartItem.getQuantity());
             this.cartItems.set(index, itemToUpdate);
         } else {
             this.cartItems.add(cartItem);
@@ -90,10 +97,14 @@ public class ShoppingCart implements Serializable {
         try {
             for (CartItem cartItem : this.cartItems) {
                 if (cartItem.getProduct().getSku().equals(sku)) {
-                    this.totalPrice -= cartItem.getPrice() * cartItem.getQuantity();
-                    this.totalPrice += cartItem.getPrice() * quantity;
-                    cartItem.setQuantity(quantity);
-                    return true;
+                    if (cartItem.getProduct().getQuantity() < quantity) {
+                        return false;
+                    } else {
+                        this.totalPrice -= cartItem.getPrice() * cartItem.getQuantity();
+                        this.totalPrice += cartItem.getPrice() * quantity;
+                        cartItem.setQuantity(quantity);
+                        return true;
+                    }
                 }
             }
         } catch (Exception e) {
@@ -101,5 +112,12 @@ public class ShoppingCart implements Serializable {
         }
 
         return false;
+    }
+
+    public void checkout() throws SQLException {
+        for (CartItem cartItem : this.cartItems) {
+            int quantity = cartItem.getQuantity();
+            cartItem.getProduct().markAsSold(quantity);
+        }
     }
 }
