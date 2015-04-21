@@ -112,29 +112,36 @@ public class Product implements Serializable {
         return status;
     }
 
-    public void setStatus(int quantity) {
-        if (quantity > 0) {
-            this.status = IN_STOCK;
-        } else if (quantity == 0) {
-            this.status = MORE_ON_THE_WAY;
-        } else {
+    public void setStatus(int quantity) throws SQLException {
+        if (!this.isOnHand()) {
             this.status = COMING_SOON;
+        } else {
+            if (quantity > 0) {
+                this.status = IN_STOCK;
+            } else if (quantity == 0) {
+                this.status = MORE_ON_THE_WAY;
+            }
         }
+    }
+
+    private boolean isOnHand() throws SQLException {
+        ResultSet resultSet = DBHelper.doQuery("SELECT * FROM on_hand WHERE sku='" + this.sku + "'");
+        return resultSet.next();
     }
 
     public static ArrayList<Product> getProducts(String filterType, String filterId, String search) {
         String query = "SELECT product.*, vendor.vendorName, category.categoryName, platform.platformName, on_hand.quantity\n" +
                         "FROM product\n" +
-                        "LEFT JOIN (vendor, category, platform, on_hand)\n" +
+                        "LEFT JOIN (vendor, category, platform)\n" +
                         "ON (\n" +
-                        "\tproduct.vendorID = vendor.vendorID\n" +
-                        "\tAND\n" +
-                        "\tproduct.categoryID = category.categoryID\n" +
-                        "\tAND\n" +
-                        "\tproduct.platformID = platform.platformID\n" +
-                        "\tAND\n" +
-                        "\tproduct.sku = on_hand.sku\n" +
-                        ")";
+                        "product.vendorID = vendor.vendorID\n" +
+                        "AND\n" +
+                        "product.categoryID = category.categoryID\n" +
+                        "AND\n" +
+                        "product.platformID = platform.platformID\n" +
+                        ")\n" +
+                        "LEFT JOIN (on_hand)\n" +
+                        "ON (product.sku = on_hand.sku)";
         if (filterType != null && filterId != null) {
             query += "WHERE product." + filterType + "='" + filterId + "'";
         } else if (search != null) {
@@ -211,31 +218,5 @@ public class Product implements Serializable {
         this.setRetail(retail);
         this.setQuantity(quantity);
         this.setStatus(quantity);
-    }
-
-    public String toJsonString() {
-        String jsonString;
-
-        String featureString = "";
-        featureString += "[";
-        for (Object feature : this.getFeatures()) {
-            featureString += "\"" + feature.toString() + "\",";
-        }
-        featureString = featureString.substring(0, featureString.length() - 1);
-        featureString += "]";
-
-        jsonString = "{\"sku\":\"" + this.getSku() + "\""
-                + ", \"vendor\":\"" + this.getVendor() + "\""
-                + ", \"category\":\"" + this.getCategory() + "\""
-                + ", \"platform\":\"" + this.getPlatform() + "\""
-                + ", \"vendorModel\":\"" + this.getVendorModel() + "\""
-                + ", \"description\":\"" + this.getDescription() + "\""
-                + ", \"retail\":\"" + this.getRetail() + "\""
-                + ", \"image\":\"" + this.getImage() + "\""
-                + ", \"quantity\":\"" + this.getQuantity() + "\""
-                + ", \"features\":" + featureString
-                + "}";
-
-        return jsonString;
     }
 }
