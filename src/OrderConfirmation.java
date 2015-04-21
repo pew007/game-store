@@ -20,6 +20,11 @@ public class OrderConfirmation extends HttpServlet {
         HttpSession session = request.getSession(false);
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
+        if (shoppingCart == null) {
+            request.getRequestDispatcher("/WEB-INF/jsp/emptyCart.jsp").forward(request, response);
+            return;
+        }
+
         try {
             shoppingCart.checkout();
         } catch (SQLException e) {
