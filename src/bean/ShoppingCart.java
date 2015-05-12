@@ -114,7 +114,7 @@ public class ShoppingCart implements Serializable {
         return false;
     }
 
-    public void checkout() throws SQLException {
+    public void checkout() throws Exception {
         for (CartItem cartItem : this.cartItems) {
             int quantity = cartItem.getQuantity();
             cartItem.getProduct().markAsSold(quantity);

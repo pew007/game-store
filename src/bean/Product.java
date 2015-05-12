@@ -5,8 +5,10 @@ import util.DBHelper;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class Product implements Serializable {
 
@@ -97,7 +99,7 @@ public class Product implements Serializable {
     }
 
     public void setImage(String image) {
-        this.image = "/_p_images/" + image;
+        this.image = "/~jadrn048/proj1/_p_images/" + image;
     }
 
     public int getQuantity() {
@@ -220,12 +222,44 @@ public class Product implements Serializable {
         this.setStatus(quantity);
     }
 
-    public void markAsSold(int quantity) throws SQLException {
+    public void markAsSold(int quantity) throws Exception {
 
         int newQuantity = this.quantity - quantity;
 
         DBHelper.doUpdate("UPDATE `on_hand` " +
-                "SET quantity='" + newQuantity + "'" +
+                "SET quantity='" + newQuantity + "', " +
+                "last_modified='" + this.getCurrentDateString() + "' " +
                 "WHERE sku='" + this.getSku() + "'");
+
+        if (productSent()) {
+            updateSentProduct(quantity);
+        } else {
+            addSentProduct(quantity);
+        }
+    }
+
+    private String getCurrentDateString() {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy/MM/dd");
+        return dateFormatter.format(new Date());
+    }
+
+    private boolean productSent() throws Exception {
+        ResultSet result = DBHelper
+                .doQuery("SELECT * FROM `merchandise_out` WHERE sku='" + this.getSku() + "'");
+        return result.next();
+    }
+
+    private void updateSentProduct(int quantity) throws Exception {
+        DBHelper.doUpdate("UPDATE `merchandise_out` " +
+                "SET date='" + this.getCurrentDateString() + "', " +
+                "quantity='" + quantity + "' " +
+                "WHERE sku='" + this.getSku() + "'");
+    }
+
+    private void addSentProduct(int quantity) throws Exception {
+        DBHelper.doUpdate("INSERT INTO `merchandise_out` VALUES ('"
+                + this.getSku() + "', '"
+                + this.getCurrentDateString() + "', '"
+                + quantity + "')");
     }
 }

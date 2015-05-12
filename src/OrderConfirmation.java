@@ -27,7 +27,7 @@ public class OrderConfirmation extends HttpServlet {
 
         try {
             shoppingCart.checkout();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return;
         }
